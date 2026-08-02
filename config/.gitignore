@@ -1,0 +1,21 @@
+# Entorno virtual
+venv/
+
+# Base de datos
+db.sqlite3
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+
+# Variables de entorno
+.env
+
+# Visual Studio Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Archivos del sistema
+.DS_Store
