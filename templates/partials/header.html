@@ -37,7 +37,9 @@
             <!-- Estos dos enlaces los activaremos en los pasos 2 y 4 -->
             <a href="{% url 'producto_lista' %}" class="nav-item nav-link">Categorías</a>
             <a href="{% url 'producto_lista' %}" class="nav-item nav-link">Productos</a>
-            <a href="#" class="nav-item nav-link">Contact</a>
+            <a href="{% url 'ventas:nueva_venta' %}" class="nav-item nav-link">Ventas</a>
+            <a href="{% url 'ventas:historial' %}" class="nav-item nav-link">Historial de Ventas</a>
+
         </div>
         <div class="d-none d-lg-flex">
             <div class="flex-shrink-0 btn-lg-square border border-light rounded-circle">

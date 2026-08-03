@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-xxl py-5">
+    <div class="container">
+        
+        <!-- Encabezado -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <p class="text-primary text-uppercase mb-1">// Módulo de Ventas</p>
+                <h1 class="display-6 mb-0">Historial de Ventas</h1>
+            </div>
+            <a href="{% url 'ventas:nueva_venta' %}" class="btn btn-primary rounded-pill px-4">
+                <i class="fas fa-plus me-2"></i>Nueva Venta
+            </a>
+        </div>
+
+        <!-- Tabla de Historial -->
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="ps-4"># Venta</th>
+                                <th>Fecha y Hora</th>
+                                <th>Cajero</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for venta in ventas %}
+                            <tr>
+                                <td class="ps-4 fw-bold">#{{ venta.id }}</td>
+                                <td>{{ venta.fecha|date:"d/m/Y H:i" }}</td>
+                                <td>
+                                    {% if venta.cajero %}
+                                        {{ venta.cajero.username }}
+                                    {% else %}
+                                        <span class="text-muted">Anónimo</span>
+                                    {% endif %}
+                                </td>
+                                <td class="fw-bold text-success">${{ venta.total }}</td>
+                                <td>
+                                    {% if venta.estado == 'COMPLETADA' %}
+                                        <span class="badge bg-success rounded-pill px-3 py-2">Completada</span>
+                                    {% else %}
+                                        <span class="badge bg-danger rounded-pill px-3 py-2">Anulada</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if venta.estado == 'COMPLETADA' %}
+                                        <form action="{% url 'ventas:anular' venta.id %}" method="POST" class="d-inline" onsubmit="return confirm('¿Seguro que deseas anular esta venta y devolver el stock?');">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                                                <i class="fas fa-ban me-1"></i>Anular
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <small class="text-muted" title="{{ venta.motivo_anulacion }}">
+                                            <i>{{ venta.motivo_anulacion|default:"Sin motivo" }}</i>
+                                        </small>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-center py-5 text-muted">
+                                    <i class="fas fa-receipt fa-3x mb-3 d-block text-secondary"></i>
+                                    No hay ventas registradas aún.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Paginación si hay más de 10 ventas -->
+        {% if is_paginated %}
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                    </li>
+                {% endif %}
+                <li class="page-item active">
+                    <span class="page-link">{{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+                </li>
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
