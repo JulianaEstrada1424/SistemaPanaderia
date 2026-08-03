@@ -2,9 +2,199 @@
 
 {% block content %}
 
-<div class="container mt-5">
-    <h1>Sistema de Inventario para Panadería</h1>
-    <p>Bienvenida Juliana.</p>
+<!-- Facts / Contadores Start -->
+<div class="container-fluid facts py-5">
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-center bg-light shadow-sm rounded p-4">
+                    <i class="fa fa-history fa-3x text-primary me-3"></i>
+                    <div class="ps-3">
+                        <h5 class="text-primary mb-0" data-toggle="counter-up">15</h5>
+                        <p class="text-secondary mb-0">Años de Experiencia</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-center bg-light shadow-sm rounded p-4">
+                    <i class="fa fa-users-cog fa-3x text-primary me-3"></i>
+                    <div class="ps-3">
+                        <h5 class="text-primary mb-0" data-toggle="counter-up">8</h5>
+                        <p class="text-secondary mb-0">Panaderos Profesionales</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-center bg-light shadow-sm rounded p-4">
+                    <i class="fa fa-bread-slice fa-3x text-primary me-3"></i>
+                    <div class="ps-3">
+                        <h5 class="text-primary mb-0" data-toggle="counter-up">135</h5>
+                        <p class="text-secondary mb-0">Total de Productos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="d-flex align-items-center bg-light shadow-sm rounded p-4">
+                    <i class="fa fa-shipping-fast fa-3x text-primary me-3"></i>
+                    <div class="ps-3">
+                        <h5 class="text-primary mb-0" data-toggle="counter-up">500</h5>
+                        <p class="text-secondary mb-0">Pedidos Diarios</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Facts / Contadores End -->
+
+
+<!-- Sobre Nosotros Start -->
+<div class="container-fluid about py-5">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <img class="img-fluid rounded w-100"
+                     src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80"
+                     alt="Pan artesanal">
+            </div>
+            <div class="col-lg-6">
+                <h6 class="text-primary text-uppercase">Sobre Nosotros</h6>
+                <h1 class="mb-4">Horneamos con amor en el corazón de Latacunga</h1>
+                <p class="mb-4">Texto sobre tradición, calidad e ingredientes locales...</p>
+                <ul class="list-unstyled mb-4">
+                    <li><i class="fa fa-check text-primary me-2"></i>Productos de Calidad</li>
+                    <li><i class="fa fa-check text-primary me-2"></i>Pedidos Personalizados</li>
+                    <li><i class="fa fa-check text-primary me-2"></i>Orden Online</li>
+                    <li><i class="fa fa-check text-primary me-2"></i>Entrega a Domicilio</li>
+                </ul>
+                <a href="tel:+593998203250" class="btn btn-primary py-3 px-5 rounded-pill">
+                    <i class="fa fa-phone-alt me-2"></i>+593 998203250
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sobre Nosotros End -->
+
+
+<!-- Categorías Start -->
+<div class="container-fluid categories py-5 bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Explora las Categorías de Nuestra Panadería</h1>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm rounded overflow-hidden h-100">
+                    <img class="card-img-top" style="height: 220px; object-fit: cover;"
+                         src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=700&q=80"
+                         alt="Pasteles y Tortas">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Pasteles y Tortas</h4>
+                        <p class="fw-bold text-primary">Desde $8 hasta $45</p>
+                        <a href="{% url 'producto_lista' %}" class="btn btn-outline-primary rounded-pill">Ver Más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm rounded overflow-hidden h-100">
+                    <img class="card-img-top" style="height: 220px; object-fit: cover;"
+                         src="static\img\about-1.jpg"
+                         alt="Pan Tradicional">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Pan Tradicional</h4>
+                        <p class="fw-bold text-primary">Desde $0.25 hasta $3</p>
+                        <a href="{% url 'producto_lista' %}" class="btn btn-outline-primary rounded-pill">Ver Más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm rounded overflow-hidden h-100">
+                    <img class="card-img-top" style="height: 220px; object-fit: cover;"
+                         src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=700&q=80"
+                         alt="Galletas y Bocaditos">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">Galletas y Bocaditos</h4>
+                        <p class="fw-bold text-primary">Desde $1 hasta $6</p>
+                        <a href="{% url 'producto_lista' %}" class="btn btn-outline-primary rounded-pill">Ver Más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Categorías End -->
+
+
+<!-- Qué Ofrecemos Start -->
+<div class="container-fluid features py-5">
+    <div class="container py-5">
+        <h1 class="text-center mb-5">¿Qué Ofrecemos?</h1>
+        <div class="row g-4">
+            <div class="col-lg-3 col-sm-6">
+                <div class="text-center bg-light shadow-sm rounded p-4 h-100">
+                    <i class="fa fa-award fa-3x text-primary mb-3"></i>
+                    <h5>Calidad Garantizada</h5>
+                    <p class="text-secondary mb-0">Ingredientes frescos en cada preparación.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="text-center bg-light shadow-sm rounded p-4 h-100">
+                    <i class="fa fa-bread-slice fa-3x text-primary mb-3"></i>
+                    <h5>Variedad Tradicional</h5>
+                    <p class="text-secondary mb-0">Recetas típicas de Latacunga y nuevas creaciones.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="text-center bg-light shadow-sm rounded p-4 h-100">
+                    <i class="fa fa-boxes fa-3x text-primary mb-3"></i>
+                    <h5>Gestión de Inventario</h5>
+                    <p class="text-secondary mb-0">Control preciso de insumos y productos disponibles.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="text-center bg-light shadow-sm rounded p-4 h-100">
+                    <i class="fa fa-shipping-fast fa-3x text-primary mb-3"></i>
+                    <h5>Entregas Rápidas</h5>
+                    <p class="text-secondary mb-0">Pedidos a domicilio en Latacunga.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Qué Ofrecemos End -->
+
+
+<!-- Testimonios Start -->
+<div class="container-fluid testimonial py-5 bg-light">
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Más de 5000+ Clientes Confían en Nosotros</h1>
+        <div class="owl-carousel testimonial-carousel">
+            <div class="testimonial-item bg-white shadow-sm rounded p-4 text-center">
+                <img class="rounded-circle mx-auto mb-3" style="width:80px; height:80px; object-fit:cover;"
+                     src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+                     alt="Cliente">
+                <p class="text-secondary">"El pan de Harinas y Trigos siempre está fresco y crocante."</p>
+                <h5 class="mb-1">María Chicaiza</h5>
+                <span class="text-primary">Cliente en Latacunga</span>
+            </div>
+            <div class="testimonial-item bg-white shadow-sm rounded p-4 text-center">
+                <img class="rounded-circle mx-auto mb-3" style="width:80px; height:80px; object-fit:cover;"
+                     src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?auto=format&fit=crop&w=200&q=80"
+                     alt="Cliente">
+                <p class="text-secondary">"Las guaguas de pan quedan hermosas y con un sabor delicioso."</p>
+                <h5 class="mb-1">Fernando Toapanta</h5>
+                <span class="text-primary">Cliente en Latacunga</span>
+            </div>
+            <div class="testimonial-item bg-white shadow-sm rounded p-4 text-center">
+                <img class="rounded-circle mx-auto mb-3" style="width:80px; height:80px; object-fit:cover;"
+                     src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+                     alt="Cliente">
+                <p class="text-secondary">"La entrega a domicilio siempre puntual y el pan siempre fresco."</p>
+                <h5 class="mb-1">Andrea Molina</h5>
+                <span class="text-primary">Cliente en Latacunga</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonios End -->
 
 {% endblock %}
