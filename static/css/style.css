@@ -415,3 +415,17 @@ h6,
 .copyright a:hover {
     color: var(--light);
 }
+/* ==========================================================
+   Ajustes propios del Sistema de Inventario para Panadería
+   La navbar original flotaba sobre un carrusel oscuro; como
+   nuestras páginas no siempre lo tienen, le damos fondo sólido
+   y separamos el contenido para que no quede tapado.
+   ========================================================== */
+.navbar.fixed-top {
+    background-color: var(--dark);
+}
+
+.content-wrapper {
+    padding-top: 140px;
+    min-height: 60vh;
+}
