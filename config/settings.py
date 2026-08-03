@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.messages import constants as messages_constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,3 +123,6 @@ STATICFILES_DIRS = [
 # Media files (imágenes subidas por el usuario, ej. imagen de productos)
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+MESSAGE_TAGS = {
+    messages_constants.ERROR: 'danger',
+}
