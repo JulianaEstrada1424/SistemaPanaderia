@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-xxl py-5">
+    <div class="container">
+        
+        <!-- Mensajes de Django -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Encabezado y Botón con el estilo dorado -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-primary fw-bold mb-0">Ventas Diarias</h1>
+            <a href="{% url 'ventas:crear_venta' %}" class="btn btn-primary rounded-pill py-2 px-4" style="background-color: #EAA636; border-color: #EAA636; color: white;">
+                + Nueva Venta
+            </a>
+        </div>
+
+        <!-- Tabla estilo Baker -->
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="text-white" style="background-color: #111111;">
+                    <tr>
+                        <th class="py-3"># ID</th>
+                        <th class="py-3">Fecha</th>
+                        <th class="py-3">Cajero</th>
+                        <th class="py-3">Total</th>
+                        <th class="py-3">Estado</th>
+                        <th class="py-3 text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for venta in ventas %}
+                    <tr>
+                        <td class="fw-bold">#{{ venta.id }}</td>
+                        <td>{{ venta.fecha|date:"d/m/Y H:i" }}</td>
+                        <td>{{ venta.cajero.username }}</td>
+                        <td class="fw-bold">${{ venta.total }}</td>
+                        <td>
+                            {% if venta.estado == 'COMPLETADA' %}
+                                <span class="badge bg-success px-3 py-2">Completada</span>
+                            {% elif venta.estado == 'ANULADA' %}
+                                <span class="badge bg-danger px-3 py-2">Anulada</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark px-3 py-2">{{ venta.estado }}</span>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if venta.estado != 'ANULADA' %}
+                                <form action="{% url 'ventas:anular_venta' venta.id %}" method="POST" style="display:inline;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="motivo" value="Anulación manual desde historial">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('¿Seguro que deseas anular esta venta?');">
+                                        Anular
+                                    </button>
+                                </form>
+                            {% else %}
+                                <span class="text-muted small">Sin acciones</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center py-4 text-muted">No hay ventas registradas aún.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

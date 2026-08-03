@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-xxl py-5">
+    <div class="container" style="max-width: 900px;">
+        
+        <h1 class="text-primary fw-bold mb-4">Registrar Nueva Venta</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-dismissible fade show alert-danger" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="card shadow-sm border-0 p-4">
+            <form method="POST" action="{% url 'ventas:crear_venta' %}">
+                {% csrf_token %}
+
+                <div class="table-responsive mb-3">
+                    <table class="table table-bordered align-middle">
+                        <thead class="text-white" style="background-color: #111111;">
+                            <tr>
+                                <th>Producto</th>
+                                <th style="width: 150px;">Cantidad</th>
+                                <th style="width: 100px;">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="filas-productos">
+                            <tr>
+                                <td>
+                                    <select name="producto_id[]" class="form-select" required>
+                                        <option value="">Selecciona un producto...</option>
+                                        {% for prod in productos %}
+                                            <option value="{{ prod.id }}">
+                                                {{ prod.nombre }} - ${{ prod.precio }} (Stock: {{ prod.stock }})
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" name="cantidad[]" class="form-control" value="1" min="1" required>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="eliminarFila(this)">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mb-4">
+                    <button type="button" class="btn btn-outline-secondary" onclick="agregarFila()">+ Agregar otro producto</button>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary px-4" style="background-color: #EAA636; border-color: #EAA636; color: white;">
+                        Completar Venta
+                    </button>
+                    <a href="{% url 'ventas:historial' %}" class="btn btn-secondary px-4">Cancelar</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function agregarFila() {
+        var tbody = document.getElementById('filas-productos');
+        var primeraFila = tbody.querySelector('tr');
+        var nuevaFila = primeraFila.cloneNode(true);
+        
+        nuevaFila.querySelector('select').value = "";
+        nuevaFila.querySelector('input').value = "1";
+        
+        tbody.appendChild(nuevaFila);
+    }
+
+    function eliminarFila(btn) {
+        var tbody = document.getElementById('filas-productos');
+        if (tbody.querySelectorAll('tr').length > 1) {
+            btn.closest('tr').remove();
+        } else {
+            alert("Debes mantener al menos un producto.");
+        }
+    }
+</script>
+{% endblock %}
