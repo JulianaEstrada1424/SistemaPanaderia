@@ -35,8 +35,8 @@
         <div class="navbar-nav mx-auto p-4 p-lg-0">
             <a href="{% url 'inicio' %}" class="nav-item nav-link {% if request.resolver_match.url_name == 'inicio' %}active{% endif %}">Home</a>
             <!-- Estos dos enlaces los activaremos en los pasos 2 y 4 -->
-            <a href="#" class="nav-item nav-link">Categorías</a>
-            <a href="#" class="nav-item nav-link">Productos</a>
+            <a href="{% url 'producto_lista' %}" class="nav-item nav-link">Categorías</a>
+            <a href="{% url 'producto_lista' %}" class="nav-item nav-link">Productos</a>
             <a href="#" class="nav-item nav-link">Contact</a>
         </div>
         <div class="d-none d-lg-flex">

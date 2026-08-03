@@ -39,13 +39,22 @@
     <!-- Spinner End -->
     {% include 'partials/header.html' %}
 
-    <div class="content-wrapper">
+<div class="content-wrapper">
+        <div class="container mt-3">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
         {% block content %}
         {% endblock %}
     </div>
-
     {% include 'partials/footer.html' %}
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
 
